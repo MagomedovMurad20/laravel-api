@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->title = $request->title;
+        $product->description = $request->description;
+
+        $product->save();
+
+        return response()->json([
+            'message' => 'success',
+            'status' => '200',
+            'data' => $product,
+        ]);
     }
 
     /**
