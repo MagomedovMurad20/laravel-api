@@ -9,11 +9,7 @@ use Illuminate\Routing\Controller;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index()
     {
         return response()->json([
@@ -21,12 +17,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $product = new Product;
@@ -42,12 +32,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
         return response()->json(['post' => $product]);
@@ -62,7 +46,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->title = $request->title;
+        $product->description = $request->description;
+
+        $product->save();
+
+        return response()->json([
+            'message' => 'изменено',
+            'status' => '200',
+            'data' => $product,
+        ]);
     }
 
     /**
