@@ -52,8 +52,8 @@ class Handler extends ExceptionHandler
     {
         if ($request->is('api/*')) {
             return response()->json([
-                'message' => 'страница не найдена',
-                'status' => '404'
+                'message' => ' не найдено',
+                'status' => '400'
             ]);
         }
     }
